@@ -94,7 +94,6 @@ import { useState } from "react";
 import LoginCard from "../Login/Login";
 import './Sugnup.scss';
 import "../../assets/fonts/font.scss";
-
 // import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export default function SignupCard() {
@@ -123,7 +122,7 @@ export default function SignupCard() {
             boxShadow={"lg"}
             p={8}
           >
-            <Stack spacing={4}>
+            <Stack spacing={4} color={"gray.200"}>
               <HStack>
                 <Box>
                   <FormControl id='firstName' isRequired>
