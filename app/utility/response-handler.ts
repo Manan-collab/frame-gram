@@ -4,3 +4,10 @@ export class ResponseHandler {
         public error: any = null
     ) {}
 }
+
+export class MessageHandler {
+    constructor(
+        public data: any,
+        public error: any = null
+    ) {}
+}

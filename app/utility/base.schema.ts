@@ -6,7 +6,6 @@ export class BaseSchema extends Schema {
             ...structure,
             createdBy: {
                 type: String,
-                required: true
             },
             updatedBy: {
                 type: String

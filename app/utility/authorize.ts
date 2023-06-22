@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import {sign, verify} from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 
@@ -11,7 +11,6 @@ export interface IExcludedPaths {
 export const createToken = (payload: any) => {
     const { JWT_SECRET } = process.env;
     const token = sign(payload, JWT_SECRET || '');
-
     return token;
 }
 
@@ -24,22 +23,22 @@ export const verifyToken = (token: string) => {
 export const authorize = (excludedPaths: IExcludedPaths[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
         try {
-            if(
+            if (
                 excludedPaths.find(
-                    e => e.path === req.url && e.method === req.method
+                    e => e.path.includes(req.url) && e.method === req.method
                 )
             ) {
                 return next();
             }
 
             const token = req.headers.authorization || '';
-    
+
             const payload = verifyToken(token);
-    
+
             res.locals.user = payload;
-    
+
             next();
-        } catch(e) {
+        } catch (e) {
             next({ statusCode: 403, message: 'UNAUTHORIZED' })
         }
     }
@@ -47,7 +46,7 @@ export const authorize = (excludedPaths: IExcludedPaths[]) => {
 
 export const permit = (permittedRoles: string[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
-        if(permittedRoles.includes(res.locals.user.role)) {
+        if (permittedRoles.includes(res.locals.user.role)) {
             return next();
         }
 
