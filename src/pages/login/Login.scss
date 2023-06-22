@@ -1,0 +1,22 @@
+.main-container {
+  display: flex;
+  height: 100vh;
+  background-color: #0b090a;
+
+  .lf-container {
+    background-color: #0b090a;
+    flex: 1;
+    // border-right: 2px solid #d392b8;
+    display: grid;
+    place-items: center;
+  }
+  .rg-container {
+    flex: 1;
+  }
+}
+
+// #blob {
+//   background-color: white;
+//   height: 500px;
+//   aspect-ratio: 1;
+// }
